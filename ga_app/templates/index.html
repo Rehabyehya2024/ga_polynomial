@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="{% static 'script.js' %}"></script>
+    <title>Polynomial Equation Solver Using Genetic Algorithms</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'fav.ico' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+        <h3>Polynomial Equation Solver Using Genetic Algorithms</h3>
+    </div>
+</div>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            Specify parameters for the Genetic Algorithm:
+            <form id="polynomialForm">
+                {% csrf_token %}
+                <!-- Number of Generations -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="numGenerations">Number of Generations</label>
+                    <input type="number" class="form-control" id="numGenerations" name="num_generations"
+                           placeholder="e.g., 100" min="1" value="100">
+                </div>
+
+                <!-- Population Size -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="populationSize">Population Size</label>
+                    <input type="number" class="form-control" id="populationSize" name="population_size"
+                           placeholder="e.g., 40" min="1" value="40">
+                </div>
+
+                <!-- x_min and x_max -->
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="xMin">x_min</label>
+                    <input type="number" class="form-control" id="xMin" name="x_min" placeholder="e.g., -10"
+                           value="-10">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="xMax">x_max</label>
+                    <input type="number" class="form-control" id="xMax" name="x_max" placeholder="e.g., 10" value="10">
+                </div>
+                <hr>
+                <!-- Number of Variables -->
+                Specify the number of variables in the polynomial:
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="numVariables">Number of variables</label>
+                    <select class="form-select" id="numVariables" name="num_variables">
+                        <option selected>Choose...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <!-- Dynamic input fields for coefficients -->
+                <div id="coefficientsContainer"></div>
+
+                <!-- Submit button -->
+                <button type="button" id="calculateButton" class="btn btn-primary btn-block mb-4">Calculate</button>
+
+                <!-- Result Container -->
+                <div id="resultContainer" class="alert alert-info d-none"></div>
+
+                <!-- Footer Text -->
+                <div class="text-center">
+                    Project done by...
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
